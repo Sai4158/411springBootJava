@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://psu.edu/Patient"
+    xmlns:tns="http://psu.edu/Patient"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:element name="patient" type="tns:Patient"/>
+
+    <xsd:complexType name="Patient">
+        <xsd:sequence>
+            <xsd:element name="name" type="tns:String15Chars"/>
+            <xsd:element name="age" type="xsd:int"/>
+            <xsd:element name="dob" type="xsd:date"/>
+            <xsd:element name="email" type="xsd:string" maxOccurs="unbounded"/>
+            <xsd:element name="gender" type="tns:Gender"/>
+            <xsd:element name="phone" type="xsd:string"/>
+            <xsd:element name="payment" type="tns:PaymentType"/>
+        </xsd:sequence>
+
+        <xsd:attribute name="id" type="tns:ID" use="required"/>
+    </xsd:complexType>
+
+    <xsd:simpleType name="String15Chars">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="Gender">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="M"/>
+            <xsd:enumeration value="F"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="ID">
+        <xsd:restriction base="xsd:int">
+            <xsd:pattern value="[0-9]+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="PaymentType">
+        <xsd:choice>
+            <xsd:element name="insurance" type="tns:Insurance"/>
+            <xsd:element name="cash" type="xsd:int"/>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:complexType name="Insurance">
+        <xsd:all>
+            <xsd:element name="providerName" type="xsd:string"/>
+            <xsd:element name="limit" type="xsd:int"/>
+        </xsd:all>
+    </xsd:complexType>
+
+</xsd:schema>

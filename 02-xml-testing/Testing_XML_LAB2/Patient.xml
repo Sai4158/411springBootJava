@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:patient 
+    xmlns:tns="http://psu.edu/Patient"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://psu.edu/Patient Patient.xsd" 
+    id="123">
+
+    <tns:name>John</tns:name>
+    <tns:age>40</tns:age>
+    <tns:dob>1921-01-01</tns:dob>
+    <tns:email>lomotey.rich@psu.edu</tns:email>
+    <tns:gender>M</tns:gender>
+    <tns:phone>1234567890</tns:phone>
+
+    <tns:payment>
+        <tns:insurance>
+            <tns:providerName>Blue Cross</tns:providerName>
+            <tns:limit>1000</tns:limit>
+        </tns:insurance>
+    </tns:payment>
+</tns:patient>
