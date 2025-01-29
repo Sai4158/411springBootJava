@@ -14,8 +14,8 @@ public class CruddemoApplication {
 
     @Bean
     public CommandLineRunner commandLineRunner() { 
-        return args -> {
-            System.out.println("Welcome to class");
+        return runner -> {
+            System.out.println("Welcome to class!!");
         };
     }
 }
