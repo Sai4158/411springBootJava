@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import jakarta.persistence.EntityManager;
 import psu.edu.cruddemo.entity.Student;
-
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
@@ -21,5 +20,10 @@ public class StudentDaoImpl implements StudentDao {
     @Transactional
     public void save(Student student) {
         entityManager.persist(student);
+    }
+
+    @Override
+    public Student findById(Integer id) {
+        return entityManager.find(Student.class, id);
     }
 }
