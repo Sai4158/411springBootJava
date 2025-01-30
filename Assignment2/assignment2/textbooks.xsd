@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://psu.edu/Textbooks"
+            xmlns:tns="http://psu.edu/Textbooks"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+
+    <xsd:element name="textbooks">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="book" type="tns:BookType" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="BookType">
+        <xsd:sequence>
+            <xsd:element name="author" type="xsd:string"/>
+            <xsd:element name="title" type="xsd:string"/>
+            <xsd:element name="genre" type="tns:GenreType"/>
+            <xsd:element name="price" type="xsd:decimal"/>
+            <xsd:element name="publish_date" type="xsd:date"/>
+            <xsd:element name="description" type="tns:DescriptionType"/>
+        </xsd:sequence>
+        <xsd:attribute name="bookID" type="xsd:string" use="required"/>
+    </xsd:complexType>
+
+    <xsd:simpleType name="GenreType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Computer"/>
+            <xsd:enumeration value="Information Technology"/>
+            <xsd:enumeration value="Management"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="DescriptionType">
+        <xsd:sequence>
+            <xsd:element name="summary">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="50"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="publisher" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:textbooks xmlns:tns="http://psu.edu/Textbooks"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://psu.edu/Textbooks textbooks.xsd">
+    
+    <tns:book bookID="bk101">
+        <tns:author>Gambardella, Matthew</tns:author>
+        <tns:title>XML Developer's Guide</tns:title>
+        <tns:genre>Computer</tns:genre>
+        <tns:price>44.95</tns:price>
+        <tns:publish_date>2000-10-01</tns:publish_date>
+        <tns:description>
+            <tns:summary>An in-depth look at creating applications</tns:summary>
+            <tns:publisher>Barnes &amp; Noble</tns:publisher>
+        </tns:description>
+    </tns:book>
+
+    <tns:book bookID="bk102">
+        <tns:author>Iwona Pisz, Sabina Kauf</tns:author>
+        <tns:title>Industry 4.0</tns:title>
+        <tns:genre>Information Technology</tns:genre>
+        <tns:price>50.18</tns:price>
+        <tns:publish_date>2021-11-01</tns:publish_date>
+        <tns:description>
+            <tns:summary>Challenges in Production Management</tns:summary>
+            <tns:publisher>Routledge</tns:publisher>
+        </tns:description>
+    </tns:book>
+
+</tns:textbooks>
