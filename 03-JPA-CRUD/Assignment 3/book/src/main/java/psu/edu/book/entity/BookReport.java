@@ -16,9 +16,9 @@ public class BookReport {
     private int quantity;
     private LocalDateTime date;
 
-    // Default constructor
     public BookReport() {}
 
+ // Constructor
     public BookReport(int custid, int bookid, double unitPrice, int quantity, LocalDateTime date) {
         this.custid = custid;
         this.bookid = bookid;
@@ -42,6 +42,7 @@ public class BookReport {
     public void setQuantity(int quantity) { this.quantity = quantity; }
     public void setDate(LocalDateTime date) { this.date = date; }
 
+//    To String
     @Override
     public String toString() {
         return "BookReport{" +

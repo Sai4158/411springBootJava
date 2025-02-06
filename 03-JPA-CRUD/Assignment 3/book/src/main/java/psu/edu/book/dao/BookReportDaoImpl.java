@@ -14,23 +14,27 @@ public class BookReportDaoImpl implements BookReportDao {
 
     private final EntityManager entityManager;
 
+//    injection for EntityManager
     @Autowired
     public BookReportDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
+//    Saves them
     @Override
     @Transactional
     public void save(BookReport bookReport) {
         entityManager.merge(bookReport);  
     }
 
+ // Retrieves all records from the book reporttb table
     @Override
     public List<BookReport> findAll() {
         TypedQuery<BookReport> query = entityManager.createQuery("FROM BookReport", BookReport.class);
         return query.getResultList();
     }
 
+ // Retrieves book reports by a specific book ID
     @Override
     public List<BookReport> findByBookid(int bookid) {
         TypedQuery<BookReport> query = entityManager.createQuery("FROM BookReport WHERE bookid = :bookid", BookReport.class);
