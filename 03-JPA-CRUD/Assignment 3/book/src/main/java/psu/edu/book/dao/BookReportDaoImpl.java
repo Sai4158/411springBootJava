@@ -27,7 +27,7 @@ public class BookReportDaoImpl implements BookReportDao {
         entityManager.merge(bookReport);  
     }
 
- // Retrieves all records from the book reporttb table
+ // Retrieves all records from the book report table
     @Override
     public List<BookReport> findAll() {
         TypedQuery<BookReport> query = entityManager.createQuery("FROM BookReport", BookReport.class);
