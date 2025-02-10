@@ -1,4 +1,4 @@
-package psu.edu.cruddemo;
+Apackage psu.edu.cruddemo;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
