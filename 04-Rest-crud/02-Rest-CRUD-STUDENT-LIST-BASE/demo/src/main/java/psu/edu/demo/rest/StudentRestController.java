@@ -1,7 +1,7 @@
 package psu.edu.demo.rest;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList; // 🔥 Ensure this import is here
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +15,8 @@ public class StudentRestController {
 
     @GetMapping("/students") 
     public List<Student> getStudents() {
-
-        List<Student> theStudents = new ArrayList<>(); 
+        List<Student> theStudents = new ArrayList<>();
         
-        // Adding sample students
         theStudents.add(new Student("Dany", "Mascher"));
         theStudents.add(new Student("David", "Masch"));
         theStudents.add(new Student("John", "Doe"));

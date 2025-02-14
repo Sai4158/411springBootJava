@@ -7,13 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/test")
 public class DemoRestController {
-	
-//	Add an end point
-	
-	@GetMapping("/hello")
-	public String SayHello() {
-		return "HELLO IST411 STUDENTS";
-	}
-	
-	
+
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "HELLO IST411 STUDENTS";
+    }
 }
