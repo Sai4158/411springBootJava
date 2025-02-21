@@ -19,19 +19,20 @@ public class Employee {
 
     @Column(name = "email")
     private String email;
+    
+    @Column(name = "book_id")
+    private Integer bookId; 
 
-    // Default Constructor
     public Employee() {
     }
 
-    // Parameterized Constructor
-    public Employee(String firstName, String lastName, String email) {
+    public Employee(String firstName, String lastName, String email, Integer bookId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.bookId = bookId;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -64,13 +65,11 @@ public class Employee {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public Integer getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
     }
 }

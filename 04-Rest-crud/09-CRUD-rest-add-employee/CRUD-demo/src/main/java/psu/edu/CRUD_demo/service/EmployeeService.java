@@ -8,4 +8,9 @@ public interface EmployeeService {
     Employee findById(int theId);
     Employee save(Employee theEmployee);
     void deleteById(int theId);
+    
+    // Added new methods
+    void updateBookId(int oldId, int newId);
+    void deleteByBookId(int bookId);
+
 }
