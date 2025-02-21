@@ -1,15 +1,14 @@
 package psu.edu.CRUD_demo.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import psu.edu.CRUD_demo.dao.EmployeeDAO;
 import psu.edu.CRUD_demo.entity.Employee;
 import psu.edu.CRUD_demo.service.EmployeeService;
 
@@ -57,17 +56,4 @@ public class EmployeeRestController {
  	}
  	
  	
-    // Update book ID
-    @PutMapping("/books/update/{oldId}/{newId}")
-    public String updateBookId(@PathVariable int oldId, @PathVariable int newId) {
-        employeeService.updateBookId(oldId, newId);
-        return "Book ID updated from " + oldId + " to " + newId;
-    }
-
-    // Delete book by Book ID
-    @DeleteMapping("/books/delete/{bookId}")
-    public String deleteBook(@PathVariable int bookId) {
-        employeeService.deleteByBookId(bookId);
-        return "Book with ID " + bookId + " deleted successfully.";
-    }
 }

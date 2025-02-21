@@ -1,6 +1,7 @@
 package psu.edu.CRUD_demo.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,32 +24,23 @@ public class EmployeeIMPL implements EmployeeService {
         return employeeDAO.findAll();
     }
 
-    @Override
-    public Employee findById(int theId) {
-        return employeeDAO.findById(theId);
-    }
+	@Override
+	public Employee findById(int theId) {
+		return employeeDAO.findById(theId);
+	}
 
-    @Override
-    @Transactional
-    public Employee save(Employee theEmployee) {
-        return employeeDAO.save(theEmployee);
-    }
+	@Override
+	@Transactional
+	public Employee save(Employee theEmployee) {
+		
+		return employeeDAO.save(theEmployee);
+	}
 
-    @Override
-    @Transactional
-    public void deleteById(int theId) {
-        employeeDAO.deleteById(theId);
-    }
-
-    @Override
-    @Transactional
-    public void updateBookId(int oldId, int newId) {
-        employeeDAO.updateBookId(oldId, newId);
-    }
-
-    @Override
-    @Transactional
-    public void deleteByBookId(int bookId) {
-        employeeDAO.deleteByBookId(bookId);
-    }
+	@Override
+	@Transactional
+	public void deleteById(int theId) {
+		
+		employeeDAO.deleteById(theId);
+		
+	}
 }
