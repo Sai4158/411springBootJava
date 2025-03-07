@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import psu.edu.CRUD_demo.dao.EmployeeDAO;
 import psu.edu.CRUD_demo.entity.Employee;
 import psu.edu.CRUD_demo.service.EmployeeService;
 
