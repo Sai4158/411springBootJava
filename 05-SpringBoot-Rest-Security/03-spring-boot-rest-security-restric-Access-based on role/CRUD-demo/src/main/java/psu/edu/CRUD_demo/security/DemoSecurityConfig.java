@@ -19,7 +19,7 @@ public class DemoSecurityConfig {
         UserDetails sai = User.builder()
                 .username("sai")
                 .password("{noop}sai123")  
-                .roles("EMPLOYEE", "MANAGER")
+                .roles("EMPLOYEE")
                 .build();
 
         UserDetails alex = User.builder()
@@ -28,25 +28,35 @@ public class DemoSecurityConfig {
                 .roles("EMPLOYEE")
                 .build();
 
-        return new InMemoryUserDetailsManager(sai, alex);
+        UserDetails managerUser = User.builder()
+                .username("manager")
+                .password("{noop}manager123") 
+                .roles("MANAGER")
+                .build();
+        
+        UserDetails adminUser = User.builder()
+                .username("admin")
+                .password("{noop}admin123") 
+                .roles("ADMIN")
+                .build();
+
+        return new InMemoryUserDetailsManager(sai, alex, managerUser, adminUser);
     }
     
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-    	 http.authorizeHttpRequests(configurer ->
-         configurer
-             .requestMatchers(HttpMethod.GET, "/api/employees").hasRole("EMPLOYEE")
-             .requestMatchers(HttpMethod.GET, "/api/employees/**").hasRole("EMPLOYEE")
-             .requestMatchers(HttpMethod.POST, "/api/employees").hasRole("MANAGER")
-             .requestMatchers(HttpMethod.PUT, "/api/employees").hasRole("MANAGER")
-             .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("ADMIN")
-     );
+        http.authorizeHttpRequests(configurer ->
+            configurer
+                .requestMatchers(HttpMethod.GET, "/api/employees").hasRole("EMPLOYEE")
+                .requestMatchers(HttpMethod.GET, "/api/employees/**").hasRole("EMPLOYEE")
+                .requestMatchers(HttpMethod.POST, "/api/employees").hasRole("MANAGER")
+                .requestMatchers(HttpMethod.PUT, "/api/employees/**").hasRole("MANAGER")
+                .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("ADMIN")
+        );
 
-        // Use HTTP Basic Authentication
         http.httpBasic(Customizer.withDefaults());
 
-        // Disable Cross Site Request Forgery (CSRF)
         http.csrf(csrf -> csrf.disable());
 
         return http.build();
