@@ -22,8 +22,9 @@ public class EmployeeIMPL implements EmployeeService {
 
     @Override
     public List<Employee> findAll() {
-        return employeeRepository.findAll();
+        return employeeRepository.findAllByOrderByLastNameAsc();
     }
+
 
     @Override
     public Employee findById(int theId) {
