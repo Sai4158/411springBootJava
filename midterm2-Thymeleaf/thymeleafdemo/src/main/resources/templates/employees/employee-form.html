@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Save Employee</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .header-logo {
+            max-height: 120px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        .form-control {
+            border-radius: 8px;
+        }
+
+        .btn-custom {
+            border-radius: 20px;
+            padding: 8px 18px;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container mt-5">
+
+    <!-- Header with Logo -->
+    <div class="text-center mb-4">
+        <img src="/images/Dealscape.png" alt="DealScape Logo" class="header-logo mb-2">
+        <h2 class="fw-bold">Save Employee</h2>
+    </div>
+
+    <!-- Form Card -->
+    <div class="card">
+        <form th:action="@{/employees/save}" th:object="${employee}" method="POST" onsubmit="return validateForm()">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="mb-3">
+                <label for="name">Full Name</label>
+                <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="Full Name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="salary">Salary</label>
+                <input type="number" th:field="*{salary}" id="salary" class="form-control" placeholder="Salary" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="age">Age</label>
+                <input type="number" th:field="*{age}" id="age" class="form-control" placeholder="Age" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="gender">Gender</label>
+                <input type="text" th:field="*{gender}" id="gender" class="form-control" placeholder="Gender" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="department">Department</label>
+                <input type="text" th:field="*{department}" id="department" class="form-control" placeholder="Department" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-info btn-custom">Save</button>
+            </div>
+        </form>
+
+        <div class="text-center">
+            <a th:href="@{/employees/list}" class="back-link">← Back to Employees List</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validateForm() {
+        const fields = ["name", "salary", "age", "gender", "department"];
+        for (const field of fields) {
+            const value = document.getElementById(field).value.trim();
+            if (!value) {
+                alert("Please fill out all fields before submitting.");
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+
+</body>
+</html>
