@@ -29,7 +29,8 @@
             padding: 10px 20px;
             border-radius: 10px;
             font-weight: 600;
-            transition: 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            border: none;
         }
 
         .btn-add {
@@ -52,14 +53,25 @@
             transform: scale(1.05);
         }
 
+        .btn-earn {
+            background-color: #6c5ce7;
+            color: white;
+        }
+
+        .btn-earn:hover {
+            background-color: #5a4bd3;
+            transform: scale(1.05);
+        }
+
         .btn-logout {
             background-color: #d63031;
             color: white;
             font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 10px;
+            padding: 12px 22px;
+            border-radius: 12px;
             font-size: 1rem;
             box-shadow: 0 4px 12px rgba(214, 48, 49, 0.3);
+            transition: all 0.3s ease-in-out;
         }
 
         .btn-logout:hover {
@@ -130,10 +142,10 @@
             <a th:href="@{/employees/showFormForAdd}" class="btn btn-add btn-modern me-2">+ Add Employee</a>
         </sec:authorize>
         <a th:href="@{/employees/list}" class="btn btn-show btn-modern me-2">Show All</a>
-        <a th:href="@{/employees/highEarners}" class="btn btn-modern" style="background-color:#6c5ce7;">High Earners (&gt; $45,000)</a>
+        <a th:href="@{/employees/highEarners}" class="btn btn-earn btn-modern">High Earners (&gt; $45,000)</a>
     </div>
 
-    <!-- Table Section -->
+    <!-- Employee Table -->
     <div class="card-section">
         <table class="table table-bordered table-hover text-center align-middle">
             <thead>
