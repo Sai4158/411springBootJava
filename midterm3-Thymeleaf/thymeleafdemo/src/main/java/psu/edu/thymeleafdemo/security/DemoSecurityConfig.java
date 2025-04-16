@@ -48,7 +48,7 @@ public class DemoSecurityConfig {
             configurer
                 .requestMatchers("/employees/showFormForAdd").hasAnyRole("MANAGER", "DIRECTOR", "ADMIN")
                 .requestMatchers("/employees/showFormForUpdate").hasAnyRole("DIRECTOR", "ADMIN")
-                .requestMatchers("/employees/delete").hasAnyRole("DIRECTOR", "ADMIN")
+                .requestMatchers("/employees/delete").hasRole("ADMIN")
                 .requestMatchers("/employees/**").authenticated()  
                 .anyRequest().permitAll()
         )
