@@ -11,7 +11,7 @@ public class LoginController {
     public String showMyLoginPage() {
         
 		//return "plain-login";
-		return "fancy-login";	
+		return "fancy-login";
     }
 	
 	// add request mapping for /access-denied
