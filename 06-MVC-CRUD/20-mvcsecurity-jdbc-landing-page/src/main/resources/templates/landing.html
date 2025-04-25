@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Welcome to IST 411</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://lh3.googleusercontent.com/p/AF1QipP0zr85LhMn8onAZGnmrJfaMJqXBZQGIHmb03Pv=s680-w680-h510');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.6); /* transparent black box */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            text-align: center;
+            color: white;
+            width: 350px;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .login-btn {
+            padding: 12px 28px;
+            font-size: 18px;
+            background-color: #1e90ff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #0057b7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Welcome to IST 411</h2>
+        <p>This is home page
+			<br>
+			Please login to view the dashboard</p>
+
+        <form th:action="@{/showMyLoginPage}" method="get">
+            <button class="login-btn" type="submit">Login</button>
+        </form>
+    </div>
+
+</body>
+</html>
