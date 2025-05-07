@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reservation Records</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-image: url('https://www.sunhotelandresort.com/images/DJI_0244.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 1000px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .btn {
+            background-color: #00bcd4;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px auto;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0199a4;
+        }
+
+        .action-btn {
+            padding: 5px 10px;
+            font-size: 14px;
+            margin: 0 2px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            color: black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #222;
+            color: white;
+        }
+
+        .top-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    </style>
+    <script>
+        function printPage() {
+            window.print();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Reservation Records</h2>
+        <div class="top-buttons">
+            <button class="btn" onclick="printPage()">Print Page</button>
+            <a th:href="@{/HotelBooking}" class="btn">Back to Home</a>
+        </div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Arrival</th>
+                <th>Departure</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="res : ${reservations}">
+                <td th:text="${res.id}"></td>
+                <td th:text="${res.firstName}"></td>
+                <td th:text="${res.lastName}"></td>
+                <td th:text="${res.email}"></td>
+                <td th:text="${res.arrivalDate}"></td>
+                <td th:text="${res.departureDate}"></td>
+                <td>
+                    <a th:href="@{/reservations/showFormForUpdate(reservationId=${res.id})}">
+                        <button class="action-btn edit-btn">Edit</button>
+                    </a>
+                    <a th:href="@{/reservations/delete(reservationId=${res.id})}">
+                        <button class="action-btn delete-btn">Delete</button>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

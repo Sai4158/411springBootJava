@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add/Update Employee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            padding: 40px 0;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+        }
+
+        h2 {
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: none;
+            font-size: 0.92rem;
+            margin-bottom: 5px;
+        }
+
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.12);
+            border: 1px solid #10b981;
+            box-shadow: none;
+        }
+
+        .error-message {
+            color: #f87171;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .btn-custom {
+            background-color: #10b981;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        .btn-custom:hover {
+            background-color: #059669;
+            transform: scale(1.03);
+        }
+
+        .btn-outline-dark {
+            border-color: #10b981;
+            color: #10b981;
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        .btn-outline-dark:hover {
+            background-color: #10b981;
+            color: white;
+        }
+
+        ::placeholder {
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2 th:text="${employee.empId} == null ? 'Add Employee' : 'Update Employee'">Add Employee</h2>
+
+    <form th:action="@{/employees/save}" th:object="${employee}" method="POST" onsubmit="return validateForm()">
+        <input type="hidden" th:field="*{empId}" />
+
+        <label for="firstName">First Name</label>
+        <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="First Name" required>
+
+        <label for="lastName">Last Name</label>
+        <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last Name" required>
+
+        <label for="startDate">Start Date</label>
+        <input type="date" class="form-control" id="startDate" 
+               th:value="${employee.startDate != null} ? ${#temporals.format(employee.startDate, 'yyyy-MM-dd')} : ''"
+               name="startDate" required>
+
+        <label for="startSalary">Start Salary</label>
+        <input type="number" step="0.01" th:field="*{startSalary}" class="form-control" id="startSalary" placeholder="e.g. 50000.00" required>
+
+        <label for="contractSigned">Contract Signed (Y/N)</label>
+        <select th:field="*{contractSigned}" class="form-control" id="contractSigned" required>
+            <option value="">Select</option>
+            <option value="Y">Yes</option>
+            <option value="N">No</option>
+        </select>
+
+        <label for="ssn">Social Security Number</label>
+        <input type="text" th:field="*{ssn}" class="form-control" id="ssn" placeholder="123-45-6789" maxlength="11" oninput="formatSSN(this)" required>
+        <div id="ssn-error" class="error-message"></div>
+
+        <label for="birthdate">Birthdate</label>
+        <input type="date" class="form-control" id="birthdate" 
+               th:value="${employee.birthdate != null} ? ${#temporals.format(employee.birthdate, 'yyyy-MM-dd')} : ''"
+               name="birthdate" required>
+
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" th:field="*{phoneNumber}" class="form-control" id="phoneNumber" placeholder="123-456-7890" maxlength="12" oninput="formatPhone(this)" required>
+        <div id="phone-error" class="error-message"></div>
+
+        <label for="emergencyContactName">Emergency Contact Name</label>
+        <input type="text" th:field="*{emergencyContactName}" class="form-control" id="emergencyContactName" placeholder="Emergency Contact Name" required>
+
+        <label for="emergencyContactPhone">Emergency Contact Phone</label>
+        <input type="text" th:field="*{emergencyContactPhone}" class="form-control" id="emergencyContactPhone" placeholder="123-456-7890" maxlength="12" oninput="formatPhone(this)" required>
+        <div id="emergency-phone-error" class="error-message"></div>
+
+        <button type="submit" class="btn btn-custom w-100" th:text="${employee.empId} == null ? 'Save Employee' : 'Update Employee'">Save Employee</button>
+    </form>
+
+    <div class="text-center">
+        <a th:href="@{/employees/list}" class="btn btn-outline-dark w-100">← Back to Employee List</a>
+    </div>
+</div>
+
+<script>
+    function validateForm() {
+        let valid = true;
+
+        const ssn = document.getElementById('ssn').value.replace(/\D/g, '');
+        const phone = document.getElementById('phoneNumber').value.replace(/\D/g, '');
+        const emergencyPhone = document.getElementById('emergencyContactPhone').value.replace(/\D/g, '');
+
+        document.getElementById('ssn-error').innerText = '';
+        document.getElementById('phone-error').innerText = '';
+        document.getElementById('emergency-phone-error').innerText = '';
+
+        if (ssn.length !== 9) {
+            document.getElementById('ssn-error').innerText = "SSN must be exactly 9 digits.";
+            valid = false;
+        }
+        if (phone.length !== 10) {
+            document.getElementById('phone-error').innerText = "Phone number must be exactly 10 digits.";
+            valid = false;
+        }
+        if (emergencyPhone.length !== 10) {
+            document.getElementById('emergency-phone-error').innerText = "Emergency contact phone must be exactly 10 digits.";
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    function formatSSN(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value.length > 9) value = value.substring(0,9);
+
+        let formatted = '';
+        if (value.length > 5) {
+            formatted = value.substring(0,3) + '-' + value.substring(3,5) + '-' + value.substring(5,9);
+        } else if (value.length > 3) {
+            formatted = value.substring(0,3) + '-' + value.substring(3,5);
+        } else {
+            formatted = value;
+        }
+        input.value = formatted;
+    }
+
+    function formatPhone(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value.length > 10) value = value.substring(0,10);
+
+        let formatted = '';
+        if (value.length > 6) {
+            formatted = value.substring(0,3) + '-' + value.substring(3,6) + '-' + value.substring(6,10);
+        } else if (value.length > 3) {
+            formatted = value.substring(0,3) + '-' + value.substring(3,6);
+        } else if (value.length > 0) {
+            formatted = value;
+        }
+        input.value = formatted;
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

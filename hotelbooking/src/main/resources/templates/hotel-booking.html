@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hotel Booking Application</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://www.sunhotelandresort.com/images/DJI_0244.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            margin-top: 20px;
+            max-width: 200px;
+        }
+
+        .center-box {
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .center-box h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+        }
+
+        .btn-container a {
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 12px 25px;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-container a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <img class="logo" src="https://seeklogo.com/images/S/sun-resorts-logo-CAB413A0C7-seeklogo.com.png" alt="Sun Resorts Logo">
+    <div class="center-box">
+        <h1>Welcome to Sun Resort</h1>
+        <div class="btn-container">
+            <a th:href="@{/reservations/showFormForAdd}">Reservation</a>
+            <a th:href="@{/reservations/list}">View Reservations</a>
+        </div>
+    </div>
+</body>
+</html>
