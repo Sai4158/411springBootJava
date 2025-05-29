@@ -1,14 +1,13 @@
 package Fun.summer.demo.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class HomeController {
 
     @GetMapping("/home")
     public String helloworld() {
-    	return "test";
+        return "test-test"; // 
     }
 }
-
