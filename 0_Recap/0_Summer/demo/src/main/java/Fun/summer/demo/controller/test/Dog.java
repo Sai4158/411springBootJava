@@ -10,4 +10,10 @@ public class Dog {
 		
 	}
 	
+	public String fun1() {
+
+		return "1111";
+	
+	}
+	
 }

@@ -15,4 +15,9 @@ public class Car {
 		return dog.fun();
 	}
 	
+	@GetMapping("/ok1")
+	public String ok1() {
+		return dog.fun1();
+	}
+	
 }
