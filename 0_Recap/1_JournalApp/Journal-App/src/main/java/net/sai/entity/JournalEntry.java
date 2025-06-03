@@ -6,7 +6,7 @@ public class JournalEntry {
 	private long id;
 	private String title;
 	
-	
+//	Get and set methods 
 	public String getContent() {
 		return content;
 	}
