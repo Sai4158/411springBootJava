@@ -20,15 +20,13 @@ import net.sai.entity.JournalEntry;
 
 @RestController
 @RequestMapping("/journal")
-public class JournalEntryController {
-
-	private HashMap<Long, JournalEntry> hm = new HashMap<>();
+public class JournalEntryControllerv2 {
 
 
 	//	when using get this will be used 
 	@GetMapping
 	public ArrayList<JournalEntry> getAll() {	
-		return new ArrayList<>(hm.values());
+		return null;
 	}
 
 
@@ -36,28 +34,26 @@ public class JournalEntryController {
 	@PostMapping
 	public boolean createEntry(@RequestBody JournalEntry journalEntry) {
 		System.out.println("Received entry: " + journalEntry.getTitle());
-		hm.put(journalEntry.getId(), journalEntry);
-		return true;
+		return null;
 	}
 
 	//only getting the name based on the id 
 	@GetMapping("/{id}")
 	public JournalEntry getJournalEntryById(@PathVariable long id) {
-		return hm.get(id);
+		return null;
 	}
 
 
 	// DELETE entry by ID
 	@DeleteMapping("/{id}")
 	public JournalEntry deleteJournalEntryById(@PathVariable long id) {
-		return hm.remove(id);
+		return null;
 	}
 
 	// PUT (update) entry by ID
 	@PutMapping("/{id}")
 	public JournalEntry updateJournalEntryById(@PathVariable long id, @RequestBody JournalEntry updatedEntry) {
-		return hm.put(id, updatedEntry);
-
+		return null;
 	}
 
 }

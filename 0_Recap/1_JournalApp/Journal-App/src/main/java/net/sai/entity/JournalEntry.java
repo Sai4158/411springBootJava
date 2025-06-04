@@ -3,7 +3,7 @@ package net.sai.entity;
 public class JournalEntry {
 
 	private String content;
-	private long id;
+	private String id;
 	private String title;
 	
 //	Get and set methods 
@@ -13,10 +13,10 @@ public class JournalEntry {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getTitle() {
