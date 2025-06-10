@@ -1,10 +1,16 @@
 package net.sai.entity;
 
+import java.sql.Date;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "journal_entries")
 public class JournalEntry {
 
 	private String content;
 	private String id;
 	private String title;
+	private Date date;
 	
 //	Get and set methods 
 	public String getContent() {
@@ -24,6 +30,12 @@ public class JournalEntry {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	

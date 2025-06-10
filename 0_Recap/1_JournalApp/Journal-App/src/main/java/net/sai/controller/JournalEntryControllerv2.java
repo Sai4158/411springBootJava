@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.annotation.PostConstruct;
 import net.sai.entity.JournalEntry;
+import net.sai.service.JorunalEntryService;
 
 // when using /journal this whole class will be used then it will pick what to use in it
 
@@ -22,6 +24,8 @@ import net.sai.entity.JournalEntry;
 @RequestMapping("/journal")
 public class JournalEntryControllerv2 {
 
+	@Autowired
+	private JorunalEntryService jorunalEntryService;
 
 	//	when using get this will be used 
 	@GetMapping
@@ -32,9 +36,10 @@ public class JournalEntryControllerv2 {
 
 	//	when using post this will be used
 	@PostMapping
-	public boolean createEntry(@RequestBody JournalEntry journalEntry) {
-		System.out.println("Received entry: " + journalEntry.getTitle());
-		return null;
+	public boolean createEntry(@RequestBody JournalEntry myEntry) {
+
+		jorunalEntryService.saveEntry(myEntry);
+		return true;
 	}
 
 	//only getting the name based on the id 
