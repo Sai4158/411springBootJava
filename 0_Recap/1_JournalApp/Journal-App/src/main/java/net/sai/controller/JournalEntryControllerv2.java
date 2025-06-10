@@ -1,24 +1,14 @@
 package net.sai.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import jakarta.annotation.PostConstruct;
 import net.sai.entity.JournalEntry;
 import net.sai.service.JorunalEntryService;
-
-// when using /journal this whole class will be used then it will pick what to use in it
 
 @RestController
 @RequestMapping("/journal")
@@ -27,38 +17,54 @@ public class JournalEntryControllerv2 {
 	@Autowired
 	private JorunalEntryService jorunalEntryService;
 
-	//	when using get this will be used 
+	// GET all entries
 	@GetMapping
-	public ArrayList<JournalEntry> getAll() {	
-		return null;
+	public List<JournalEntry> getAll() {
+	    return jorunalEntryService.getAll();
+	    }
+
+	// POST a new entry
+	@PostMapping
+	public JournalEntry createEntry(@RequestBody JournalEntry myEntry) {
+		jorunalEntryService.saveEntry(myEntry);
+		return myEntry;
 	}
 
+	// GET by ID
+	@GetMapping("/{id}")
+	public JournalEntry getJournalEntryById(@PathVariable ObjectId id) {
+		return jorunalEntryService.findById(id).orElse(null);
+	}
 
-	//	when using post this will be used
-	@PostMapping
-	public boolean createEntry(@RequestBody JournalEntry myEntry) {
-
-		jorunalEntryService.saveEntry(myEntry);
+	// DELETE by ID
+	@DeleteMapping("/{id}")
+	public boolean deleteJournalEntryById(@PathVariable ObjectId id) {
+		Optional<JournalEntry> entry = jorunalEntryService.findById(id);
+		jorunalEntryService.deleteById(id);
 		return true;
 	}
 
-	//only getting the name based on the id 
-	@GetMapping("/{id}")
-	public JournalEntry getJournalEntryById(@PathVariable long id) {
-		return null;
-	}
+	@PutMapping("/id/{id}")
+	public JournalEntry updateJournalById(@PathVariable ObjectId id, @RequestBody JournalEntry newEntry) {
+	    JournalEntry old = jorunalEntryService.findById(id).orElse(null);
+	    
+	    if (old != null) {
+	        if (newEntry.getTitle() != null && !newEntry.getTitle().isEmpty()) {
+	            old.setTitle(newEntry.getTitle());
+	        }
 
+	        if (newEntry.getContent() != null && !newEntry.getContent().isEmpty()) {
+	            old.setContent(newEntry.getContent());
+	        }
 
-	// DELETE entry by ID
-	@DeleteMapping("/{id}")
-	public JournalEntry deleteJournalEntryById(@PathVariable long id) {
-		return null;
-	}
+	        if (newEntry.getDate() != null) {
+	            old.setDate(newEntry.getDate());
+	        }
 
-	// PUT (update) entry by ID
-	@PutMapping("/{id}")
-	public JournalEntry updateJournalEntryById(@PathVariable long id, @RequestBody JournalEntry updatedEntry) {
-		return null;
+	        jorunalEntryService.saveEntry(old);
+	    }
+
+	    return old;
 	}
 
 }
