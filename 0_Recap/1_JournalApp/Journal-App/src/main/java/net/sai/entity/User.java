@@ -3,30 +3,28 @@ package net.sai.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
-import lombok.NonNull;
+import lombok.NoArgsConstructor;
 
 @Document(collection = "users")
 @Data
+@NoArgsConstructor
 public class User {
 
+    @Id
+    private ObjectId id;
 
-	@Id
-	private Object id;
-	
-	@NonNull
-	@Indexed(unique = true)
-	private String username;
-	
-	@NonNull
-	private String password;
-	
-	@DBRef
-	private List<JournalEntry> journalEntries = new ArrayList<>();
- 	
+    @Indexed(unique = true)
+    private String username;
+
+    private String password;
+
+    @DBRef
+    private List<JournalEntry> journalEntries = new ArrayList<>();
 }

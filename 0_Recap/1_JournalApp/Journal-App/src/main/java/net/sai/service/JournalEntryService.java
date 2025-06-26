@@ -11,7 +11,7 @@ import net.sai.entity.JournalEntry;
 import net.sai.repository.JournalEntryRepo;
 
 @Service  
-public class JorunalEntryService {
+public class JournalEntryService {
 
     @Autowired
     private JournalEntryRepo journalEntryRepo;
