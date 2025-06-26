@@ -46,12 +46,12 @@
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 		
-		<dependency>
+<dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
-    <version>1.18.36</version>
-    <scope>provided</scope>
-	</dependency>
+    <optional>true</optional>
+</dependency>
+
 
 		
 	</dependencies>

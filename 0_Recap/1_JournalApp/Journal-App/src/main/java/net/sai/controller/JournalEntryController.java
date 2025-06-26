@@ -1,6 +1,7 @@
 package net.sai.controller;
 
 import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,15 +43,15 @@ public class JournalEntryController {
 //    @PutMapping("/{id}")
 //    public JournalEntry updateJournalById(@PathVariable ObjectId id, @RequestBody JournalEntry newEntry) {
 //        return journalEntryService.findById(id).map(old -> {
-//            String newTitle = newEntry.getTitle();
-//            String newContent = newEntry.getContent();
+//            String title = newEntry.getTitle();
+//            String content = newEntry.getContent();
 //
-//            if (newTitle != null && !newTitle.trim().isEmpty()) {
-//                old.setTitle(newTitle.trim());
+//            if (title != null && !title.trim().isEmpty()) {
+//                old.setTitle(title.trim());
 //            }
 //
-//            if (newContent != null && !newContent.trim().isEmpty()) {
-//                old.setContent(newContent.trim());
+//            if (content != null && !content.trim().isEmpty()) {
+//                old.setContent(content.trim());
 //            }
 //
 //            if (newEntry.getDate() != null) {
@@ -61,4 +62,5 @@ public class JournalEntryController {
 //            return old;
 //        }).orElse(null);
 //    }
+
 }
