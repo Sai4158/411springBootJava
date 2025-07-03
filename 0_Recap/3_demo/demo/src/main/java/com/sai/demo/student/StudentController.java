@@ -15,6 +15,9 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @GetMapping
     public List<students> findAllStudents() {
