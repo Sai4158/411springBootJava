@@ -2,7 +2,7 @@ package com.sai.demo.student;
 
 import java.time.LocalDate;
 
-public class students {
+public class Student {
 
     private String name;
     private String lastName;
@@ -11,12 +11,10 @@ public class students {
     private String email;
     private int age;
 
-    // Default constructor
-    public students(){
-
+    public Student() {
     }
 
-    public students(String name, String lastName, String dateOfBirth, LocalDate localDate, String email, int age) {
+    public Student(String name, String lastName, String dateOfBirth, LocalDate localDate, String email, int age) {
         this.name = name;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
