@@ -13,7 +13,7 @@ public class StudentController {
     @GetMapping
     public List<String> findAllStudents() {
         return List.of(
-                "Alibou",
+                "Aliboud",
                 "Hello World",
                 "John DoeEE"
         );
