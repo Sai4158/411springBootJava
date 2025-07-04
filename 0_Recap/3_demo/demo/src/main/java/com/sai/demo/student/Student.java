@@ -1,58 +1,60 @@
 package com.sai.demo.student;
 
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "student")
 public class Student {
 
-    private String name;
-    private String lastName;
-    private String dateOfBirth;
-    private LocalDate localDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String firstname;
+    private String lastname;
+    private LocalDate dateOfBirth;
     private String email;
     private int age;
 
     public Student() {
     }
 
-    public Student(String name, String lastName, String dateOfBirth, LocalDate localDate, String email, int age) {
-        this.name = name;
-        this.lastName = lastName;
+    public Student(String firstname, String lastname, LocalDate dateOfBirth, String email, int age) {
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.dateOfBirth = dateOfBirth;
-        this.localDate = localDate;
         this.email = email;
         this.age = age;
     }
 
-    public String getName() {
-        return name;
+    // Getters and Setters
+    public Integer getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public String getDateOfBirth() {
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public LocalDate getLocalDate() {
-        return localDate;
-    }
-
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
     }
 
     public String getEmail() {
