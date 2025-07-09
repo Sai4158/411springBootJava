@@ -2,6 +2,8 @@ package ex2.demo.topiccontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
@@ -23,6 +25,13 @@ public class TopicController {
     public Topics getOneTopic(@PathVariable String id) {
         return topicService.getOneTopic(id);
     }
+    
+    @PostMapping("/topics")
+    public String AddTopic(@RequestBody Topics topic) {
+        
+        return topicService.AddTopic;
+    }
+    
     
     
 }

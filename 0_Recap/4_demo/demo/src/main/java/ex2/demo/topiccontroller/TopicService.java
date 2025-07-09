@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Service
 public class TopicService {
 
+	public static final String AddTopic = null;
 	private List<Topics> Topics1 = Arrays.asList(
 			new Topics("1", "Java", "Core Java Concepts"),
 			new Topics("2", "Spring Boot", "Spring Boot Basics"),
@@ -17,17 +18,18 @@ public class TopicService {
 			new Topics("5", "SQL", "Database ")
 			);
 
-
-	public List<Topics> getAlltopics(){
+	public List<Topics> getAlltopics(Topics topic){
 		return Topics1;
 	}
 
 	public Topics getOneTopic(String id){
-
-
 		return Topics1.stream().filter(t -> t.getId().equals(id)).findFirst().get();
-
-
 	}
+	
+	
+	public void AddTopic(Topics topic){
+		Topics1.add(topic); 
+	}
+	
 
 }
