@@ -1,5 +1,7 @@
 package psu.edu.demoapp.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,10 +31,16 @@ public class BookingController {
     }
 
     @PostMapping
-    public String save(@ModelAttribute DogParkBooking b) {
-        service.save(b);
+    public String save(@ModelAttribute DogParkBooking booking,
+                       Principal principal) {
+
+        // always use the logged-in account
+        booking.setOwnerUsername(principal.getName());
+
+        service.save(booking);          // may still throw “slot full” if over-capacity
         return "redirect:/bookings";
     }
+
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model m) {
